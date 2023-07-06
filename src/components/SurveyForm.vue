@@ -16,16 +16,22 @@ export default {
     const surveyJson = {
       questions: [
         {
-          type: 'radiogroup',
+          type: 'rating',
           name: 'satisfactionRating',
           title: 'How satisfied are you with the overall support provided by Engagis? ',
-          choices: ['Excellent', 'Satisfactory', 'Needs Improvement', 'Poor']
+          rateType: "stars",
+          rateCount: "5",
+          rateMax: "5",
         },
         {
-          type: 'radiogroup',
+          type: 'rating',
           name: 'responseTimely',
           title: 'Did the Engagis support team respond to your queries in a timely manner?',
-          choices: ['Yes', 'No']
+          rateType: "smileys",
+          scaleColorMode: "colored",
+          rateCount: 2,
+          rateMax: 2,
+          displayMode: "buttons"
         },
         {
           type: 'radiogroup',
@@ -50,10 +56,14 @@ export default {
           ]
         },
         {
-          type: 'radiogroup',
+          type: 'rating',
           name: 'resolutionTimely',
           title: 'Were you able to easily reach a resolution to your issue with the help of Engagis support?',
-          choices: ['Yes', 'No']
+          rateType: "smileys",
+          scaleColorMode: "colored",
+          rateCount: 3,
+          rateMax: 3,
+          displayMode: "buttons"
         },
         {
           type: 'comment',
@@ -86,11 +96,12 @@ export default {
         details: answers,
       };
 
-      axios
-        .post('http://202.137.117.195:8000/api/engagis-survey', payload)
-     //   .post('http://127.0.0.1:8000/api/engagis-survey', payload)
+  axios
+//   .post('http://integratoradmin.engagisstaging.com/api/engagis-survey', payload)
+           .post('http://202.137.117.195:8000/api/engagis-survey', payload)
+ ///   .post('http://127.0.0.1:8000/api/engagis-survey', payload)
         .then(() => {
-        //  console.log(response);
+          console.log(answers);
           console.log('Survey submitted successfully');
           
         })
